@@ -16,6 +16,7 @@ const Body = ({
       style={{
         width: "1200px",
         height: "70vh",
+        backgroundColor: "#FCF6F5",
       }}
     >
       {/* <Checkbox onClick={() => {}} /> */}
@@ -23,35 +24,40 @@ const Body = ({
         style={{
           display: "flex",
           justifyContent: "space-between",
+          padding: "20px",
+          marginTop: "50px",
+          alignItems: "center",
+          backgroundColor: "#7b9acc",
+          color: "white",
           // border: "5px red solid", rgba() 수정
         }}
       >
         <span
           style={{
-            marginRight: "30px",
-            marginLeft: "30px",
+            marginRight: "0px",
+            marginLeft: "15px",
           }}
         >
           Name
         </span>
         <span
           style={{
-            marginRight: "50px",
+            marginRight: "10px",
           }}
         >
           Address
         </span>
         <span
           style={{
-            marginRight: "70px",
+            marginRight: "0px",
           }}
         >
           Phone
         </span>
         <span
           style={{
-            marginRight: "20px",
-            marginLeft: "-30px",
+            marginRight: "0px",
+            marginLeft: "10px",
           }}
         >
           가입날짜
@@ -66,7 +72,7 @@ const Body = ({
         <span>&nbsp;</span>
         <span
           style={{
-            marginLeft: "-10px",
+            marginLeft: "-50px",
           }}
         >
           Edit
@@ -75,18 +81,22 @@ const Body = ({
         <span>&nbsp;</span>
         <span>Read More</span>
         <span />
-        <button
-          onClick={() => {}}
-          style={{
-            border: "1px black solid",
-            borderRadius: "10%",
-            padding: "10px",
-          }}
-        >
-          {" "}
-          회원 추가
-        </button>
       </div>
+      <button
+        onClick={() => {}}
+        style={{
+          borderRadius: "10px",
+          padding: "10px",
+          position: "absolute",
+          top: "8%",
+          marginLeft: "5px",
+          backgroundColor: "#195190",
+          color: "rgb(236, 247, 239)",
+        }}
+      >
+        {" "}
+        회원 추가
+      </button>
       <UserList
         user={user}
         users={users}
@@ -94,97 +104,7 @@ const Body = ({
         onToggle={onToggle}
         onInsertToggle={onInsertToggle}
         setSelectedTodo={setSelectedTodo}
-        style={{}}
       />
-
-      {/* <Checkbox />
-      <div className="flex items-center space-x-3 truncate">
-        <Mask
-          variant="squircle"
-          src="http://daisyui.com/tailwind-css-component-profile-2@56w.png"
-        />
-        <div>
-          <div className="font-bold">Hart Hagerty</div>
-          <div className="text-sm opacity-50">United States</div>
-        </div>
-      </div>
-      <div>
-        Zemlak, Daniel and Leannon
-        <br />
-        <Badge color="ghost" size="sm">
-          Desktop Support Technician
-        </Badge>
-      </div>
-      <div>Purple</div>
-      <Button color="ghost" size="xs">
-        details
-      </Button>
-      <Checkbox />
-      <div className="flex items-center space-x-3 truncate">
-        <Mask
-          variant="squircle"
-          src="http://daisyui.com/tailwind-css-component-profile-3@56w.png"
-        />
-        <div>
-          <div className="font-bold">Brice Swyre</div>
-          <div className="text-sm opacity-50">China</div>
-        </div>
-      </div>
-      <div>
-        Carrol Group
-        <br />
-        <Badge color="ghost" size="sm">
-          Tax Accountant
-        </Badge>
-      </div>
-      <div>Red</div>
-      <Button color="ghost" size="xs">
-        details
-      </Button>
-      <Checkbox />
-      <div className="flex items-center space-x-3 truncate">
-        <Mask
-          variant="squircle"
-          src="http://daisyui.com/tailwind-css-component-profile-4@56w.png"
-        />
-        <div>
-          <div className="font-bold">Marjy Ferencz</div>
-          <div className="text-sm opacity-50">Russia</div>
-        </div>
-      </div>
-      <div>
-        Rowe-Schoen
-        <br />
-        <Badge color="ghost" size="sm">
-          Office Assistant I
-        </Badge>
-      </div>
-      <div>Crimson</div>
-      <Button color="ghost" size="xs">
-        details
-      </Button>
-      <Checkbox />
-      <div className="flex items-center space-x-3 truncate">
-        <Mask
-          variant="squircle"
-          src="http://daisyui.com/tailwind-css-component-profile-5@56w.png"
-        />
-        <div>
-          <div className="font-bold">Yancy Tear</div>
-          <div className="text-sm opacity-50">Brazil</div>
-        </div>
-      </div>
-      <div>
-        Wyman-Ledner
-        <br />
-        <Badge color="ghost" size="sm">
-          Community Outreach Specialist
-        </Badge>
-      </div>
-      <div>Indigo</div>
-      <Button color="ghost" size="xs">
-        details
-      </Button> */}
     </div>
   );
 };

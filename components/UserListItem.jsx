@@ -34,6 +34,9 @@ const UserListItem = ({
         style={{
           display: "flex",
           width: "100%",
+          border: "2px #7b9acc solid",
+          height: "50px",
+          alignItems: "center",
         }}
       >
         {/* <div
@@ -92,7 +95,7 @@ const UserListItem = ({
         <div
           className="feature"
           style={{
-            marginRight: "60px",
+            marginRight: "80px",
             textAlign: "center",
 
             width: "100px",
@@ -100,26 +103,30 @@ const UserListItem = ({
         >
           {feature}
         </div>
-        <div
-          className="edit"
-          onClick={() => {
-            onInsertToggle();
-            setSelectedUser((prev) => user);
-          }}
-          style={{
-            marginRight: "60px",
-          }}
-        >
-          <MdModeEditOutline />
-        </div>
-        <div
-          className="remove"
-          onClick={() => {
-            onRemove(id);
-          }}
-        >
-          <MdRemoveCircleOutline />
-        </div>
+        <button>
+          <div
+            className="edit"
+            onClick={() => {
+              onInsertToggle();
+              setSelectedUser((prev) => user);
+            }}
+            style={{
+              marginRight: "100px",
+            }}
+          >
+            <MdModeEditOutline />
+          </div>
+        </button>
+        <button>
+          <div
+            className="remove"
+            onClick={() => {
+              onRemove(id);
+            }}
+          >
+            <MdRemoveCircleOutline />
+          </div>
+        </button>
       </div>
     </li>
   );
