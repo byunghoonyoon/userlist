@@ -8,7 +8,7 @@ const Body = ({
   onRemove,
   onToggle,
   onInsertToggle,
-  setSelectedTodo,
+  setSelectedUser,
 }) => {
   return (
     <div
@@ -17,15 +17,38 @@ const Body = ({
         width: "1200px",
         height: "70vh",
         backgroundColor: "#FCF6F5",
+        position: "relative",
       }}
     >
+      {" "}
+      <button
+        className="btn btn-info absolute"
+        style={{
+          left: "10px",
+          top: "10px",
+        }}
+      >
+        회원 추가
+      </button>
+      <input
+        type="text"
+        placeholder="검색할 이름을 입력해주세요"
+        className="input input-bordered input-info w-full max-w-xs absolute"
+        style={{
+          right: "10px",
+          top: "10px",
+        }}
+        onClick={() => {
+          // 검색기능
+        }}
+      />
       {/* <Checkbox onClick={() => {}} /> */}
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           padding: "20px",
-          marginTop: "50px",
+          marginTop: "70px",
           alignItems: "center",
           backgroundColor: "#7b9acc",
           color: "white",
@@ -34,29 +57,32 @@ const Body = ({
       >
         <span
           style={{
-            marginRight: "0px",
-            marginLeft: "15px",
+            width: "100px",
+            textAlign: "center",
+            marginLeft: "-10px",
           }}
         >
-          Name
+          이름
         </span>
         <span
           style={{
-            marginRight: "10px",
+            marginLeft: "-20px",
           }}
         >
-          Address
+          주소
+        </span>
+        <span
+          style={{
+            marginLeft: "40px",
+            marginRight: "0px",
+          }}
+        >
+          연락처
         </span>
         <span
           style={{
             marginRight: "0px",
-          }}
-        >
-          Phone
-        </span>
-        <span
-          style={{
-            marginRight: "0px",
+
             marginLeft: "10px",
           }}
         >
@@ -75,35 +101,20 @@ const Body = ({
             marginLeft: "-50px",
           }}
         >
-          Edit
+          수정
         </span>
-        <span>Delete</span>
+        <span>삭제</span>
         <span>&nbsp;</span>
         <span>Read More</span>
         <span />
       </div>
-      <button
-        onClick={() => {}}
-        style={{
-          borderRadius: "10px",
-          padding: "10px",
-          position: "absolute",
-          top: "8%",
-          marginLeft: "5px",
-          backgroundColor: "#195190",
-          color: "rgb(236, 247, 239)",
-        }}
-      >
-        {" "}
-        회원 추가
-      </button>
       <UserList
         user={user}
         users={users}
         onRemove={onRemove}
         onToggle={onToggle}
         onInsertToggle={onInsertToggle}
-        setSelectedTodo={setSelectedTodo}
+        setSelectedUser={setSelectedUser}
       />
     </div>
   );

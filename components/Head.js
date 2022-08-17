@@ -19,15 +19,15 @@ const Head = () => {
               </a>
               <a href="#" _blank="target">
                 <span></span>
-                <span>ABC</span>
+                <span>MADE</span>
               </a>
               <a href="#" _blank="target">
                 <span></span>
-                <span>DEF</span>
+                <span>BY</span>
               </a>
               <a href="#" _blank="target">
                 <span></span>
-                <span>MORE</span>
+                <span>BYUNG HOON</span>
               </a>
             </li>
           </ul>

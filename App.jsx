@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
+import UserEdit from "./components/UserEdit";
 // import UserInsert from "./components/TodoInsert";
 // import UserTemplate from "./components/TodoTemplate";
 // import UserList from "./components/TodoList";
@@ -13,11 +14,11 @@ import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
 const App = () => {
   const [user, setUser] = useState("");
   const [insertToggle, setInsertToggle] = useState(false);
-  const [selectedTodo, setSelectedTodo] = useState(null);
+  const [selectedUser, setSelectedUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [users, setUsers] = useState([]);
-  const [numbers, setNumbers] = useState(0);
+
   // const handleDragStart = (e, user) => {
   //   e.dataTransfer.effectAllowed = "move";
   //   e.dataTransfer.setData("tmp", JSON.stringify(user));
@@ -56,7 +57,7 @@ const App = () => {
           url: "http://localhost:3002/users",
           method: "GET",
         });
-        console.log(data.data);
+
         setUsers(data.data);
         setIsLoading(false);
         await new Promise((resolve, reject) => {
@@ -132,13 +133,22 @@ const App = () => {
     setInsertToggle((prev) => !prev);
   };
 
-  const onUpdate = async (id, text) => {
+  const onUpdate = async (
+    id,
+    nameValue,
+    addressValue,
+    phoneValue,
+    featureValue
+  ) => {
     try {
       const data = await axios.put(`http://localhost:3002/users/update/${id}`, {
-        text: text,
+        name: nameValue,
+        address: addressValue,
+        phone: phoneValue,
+        feature: featureValue,
       });
       setUsers((users) =>
-        users.map((user) => (user.id === id ? { ...user, text } : user))
+        users.map((user) => (user.id === id ? { ...user } : user))
       );
       setUsers(data.data);
       // await new Promise((resolve, reject) => {
@@ -167,8 +177,18 @@ const App = () => {
         onRemove={onRemove}
         // onToggle={onToggle}
         onInsertToggle={onInsertToggle}
-        setSelectedTodo={setSelectedTodo}
+        setSelectedUser={setSelectedUser}
       />
+      {insertToggle && (
+        <UserEdit
+          user={user}
+          users={users}
+          onRemove={onRemove}
+          // onToggle={onToggle}
+          onInsertToggle={onInsertToggle}
+          setSelectedUser={setSelectedUser}
+        />
+      )}
       <Footer />
     </div>
   );
