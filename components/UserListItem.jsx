@@ -6,14 +6,7 @@ import {
   MdModeEditOutline,
 } from "react-icons/md";
 
-const UserListItem = ({
-  user,
-  checked,
-  onToggle,
-  onInsertToggle,
-  setSelectedUser,
-  onRemove,
-}) => {
+const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
   const { id, name, regDate, phone, address, feature } = user;
 
   return (
@@ -54,9 +47,10 @@ const UserListItem = ({
         <div
           className="name"
           style={{
-            marginRight: "50px",
+            marginRight: "30px",
             marginLeft: "20px",
             textAlign: "center",
+            width: "70px",
           }}
         >
           {name}
@@ -76,6 +70,8 @@ const UserListItem = ({
           style={{
             marginRight: "40px",
             textAlign: "center",
+
+            width: "120px",
           }}
         >
           {phone}
@@ -107,8 +103,8 @@ const UserListItem = ({
           <div
             className="edit"
             onClick={() => {
-              onInsertToggle();
               setSelectedUser((prev) => user);
+              onInsertToggle();
             }}
             style={{
               marginRight: "100px",

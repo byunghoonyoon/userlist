@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./UserEdit.css";
+import "../styles/UserEdit.css";
 
 const UserEdit = ({
   user,
@@ -26,8 +26,18 @@ const UserEdit = ({
   const onFeatureChange = (e) => {
     setFeatureValue(e.target.value);
   };
-  const onSubmit = () => {
-    // e.preventDefault();
+
+  // e.preventDefault()에러 원인 및 해결
+  //useEffect표시하지 않은 사용자 정의 메소드가 인수를 전달하지 않고
+  // 첫 번째 매개변수로 전달된 콜백 함수를 호출하기 때문입니다.
+  // preventDefault그런 다음 첫 번째 인수 를 호출하려고 합니다
+  // 이 인수는 undefined. 입니다
+  // 콜백에 올바른 값을 전달하도록 메소드를 수정 useEffect하거나
+  // 정의되지 않은 매개변수를 사용하지 않도록 콜백을 변경해야 합니다.
+  const onSubmit = (e) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
     onUpdate(
       selectedUser.id,
       nameValue,
@@ -39,16 +49,14 @@ const UserEdit = ({
     setAddressValue("");
     setPhoneValue("");
     setFeatureValue("");
+    onInsertToggle();
   };
 
   useEffect(() => {
-    console.log(selectedUser);
-    // https://velog.io/@kwonh/React-%EA%B9%94%EB%81%94%ED%95%9C-%EC%A1%B0%EA%B1%B4%EB%B6%80%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0
-    // 조건부렌더링 , user 찾는것
-    // setNameValue(selectedUser.name);
-    // setAddressValue(selectedUser.address);
-    // setPhoneValue(selectedUser.phone);
-    // setFeatureValue(selectedUser.feature);
+    setNameValue(selectedUser.name);
+    setAddressValue(selectedUser.address);
+    setPhoneValue(selectedUser.phone);
+    setFeatureValue(selectedUser.feature);
   }, [selectedUser]);
 
   return (

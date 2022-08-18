@@ -77,9 +77,12 @@ app.patch("/users/update/:id", async (req, res) => {
     [name, address, phone, feature, id]
   );
 
-  res.json({
-    msg: `${id}번 유저의 정보가 수정되었습니다.`,
-  });
+  const [updateUsers] = await pool.query(
+    `
+    select * from users order by id desc
+    `
+  );
+  res.json(updateUsers);
 });
 //이름수정
 app.patch("/users/update_name/:id", async (req, res) => {

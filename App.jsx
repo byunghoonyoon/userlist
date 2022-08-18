@@ -3,18 +3,13 @@ import Head from "./components/Head";
 import Footer from "./components/Footer";
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
-import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
 import UserEdit from "./components/UserEdit";
-// import UserInsert from "./components/TodoInsert";
-// import UserTemplate from "./components/TodoTemplate";
-// import UserList from "./components/TodoList";
-// import UserEdit from "./components/TodoEdit";
 // import Draggable from "react-draggable";
 
 const App = () => {
   const [user, setUser] = useState("");
   const [insertToggle, setInsertToggle] = useState(false);
-  const [selectedUser, setSelectedUser] = useState();
+  const [selectedUser, setSelectedUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [users, setUsers] = useState([]);
@@ -94,16 +89,7 @@ const App = () => {
     } catch (e) {
       setError(e);
     }
-    // nextId.current++;
   };
-
-  // const onToggle = async (id) => {
-  //   const data = await axios({
-  //     url: `http://localhost:4000/users/checked/${id}`,
-  //     method: "patch",
-  //   });
-  //   setUsers(data.data);
-  // };
 
   const onRemove = (id) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -141,21 +127,16 @@ const App = () => {
     featureValue
   ) => {
     try {
-      const data = await axios.put(`http://localhost:3002/users/update/${id}`, {
-        name: nameValue,
-        address: addressValue,
-        phone: phoneValue,
-        feature: featureValue,
-      });
-      setUsers((users) =>
-        users.map((user) => (user.id === id ? { ...user } : user))
+      const data = await axios.patch(
+        `http://localhost:3002/users/update/${id}`,
+        {
+          name: nameValue,
+          address: addressValue,
+          phone: phoneValue,
+          feature: featureValue,
+        }
       );
       setUsers(data.data);
-      // await new Promise((resolve, reject) => {
-      //   setTimeout(() => {
-      //     resolve();
-      //   }, 3000);
-      // });
     } catch (e) {
       setError(e);
     }
@@ -175,18 +156,18 @@ const App = () => {
         user={user}
         users={users}
         onRemove={onRemove}
-        // onToggle={onToggle}
         onInsertToggle={onInsertToggle}
         setSelectedUser={setSelectedUser}
+        onUpdate={onUpdate}
       />
       {insertToggle && (
         <UserEdit
           user={user}
           users={users}
           onRemove={onRemove}
-          // onToggle={onToggle}
           onInsertToggle={onInsertToggle}
-          setSelectedUser={setSelectedUser}
+          selectedUser={selectedUser}
+          onUpdate={onUpdate}
         />
       )}
       <Footer />

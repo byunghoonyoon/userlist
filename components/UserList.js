@@ -5,8 +5,8 @@ const UserList = ({
   users,
   onRemove,
   onInsertToggle,
-  setSelectedTodo,
-  onToggle,
+  setSelectedUser,
+  onUpdate,
 }) => {
   return (
     <ul
@@ -16,14 +16,14 @@ const UserList = ({
         width: "1200px",
       }}
     >
+      {/* {Array.from(users).map((user, index) => ( */}
       {users.map((user, index) => (
         <UserListItem
           user={user}
           key={index}
           onRemove={onRemove}
-          onToggle={onToggle}
           onInsertToggle={onInsertToggle}
-          setSelectedTodo={setSelectedTodo}
+          setSelectedUser={setSelectedUser}
 
           //   handleDragStart={handleDragStart}
           //   handleDragOver={handleDragOver}

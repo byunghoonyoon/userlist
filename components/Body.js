@@ -6,7 +6,7 @@ const Body = ({
   user,
   users,
   onRemove,
-  onToggle,
+  onUpdate,
   onInsertToggle,
   setSelectedUser,
 }) => {
@@ -15,7 +15,6 @@ const Body = ({
       className="overflow-x-auto mx-auto my-4 block"
       style={{
         width: "1200px",
-        height: "70vh",
         backgroundColor: "#FCF6F5",
         position: "relative",
       }}
@@ -74,7 +73,7 @@ const Body = ({
         <span
           style={{
             marginLeft: "40px",
-            marginRight: "0px",
+            marginRight: "10px",
           }}
         >
           연락처
@@ -112,9 +111,9 @@ const Body = ({
         user={user}
         users={users}
         onRemove={onRemove}
-        onToggle={onToggle}
         onInsertToggle={onInsertToggle}
         setSelectedUser={setSelectedUser}
+        onUpdate={onUpdate}
       />
     </div>
   );
