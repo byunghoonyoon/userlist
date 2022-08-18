@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
+import { MdOutlineSearch } from "react-icons/md";
 import UserList from "./UserList";
 
 const Body = ({
   user,
   users,
+  onInsert,
   onRemove,
   onUpdate,
   onInsertToggle,
   setSelectedUser,
+  onAddToggle,
+  onSearch,
 }) => {
+  const [value, setValue] = useState("");
+  const onSearchChange = (e) => {
+    setValue(e.target.value);
+  };
   return (
     <div
       className="overflow-x-auto mx-auto my-4 block"
@@ -26,6 +34,9 @@ const Body = ({
           left: "10px",
           top: "10px",
         }}
+        onClick={() => {
+          onAddToggle();
+        }}
       >
         회원 추가
       </button>
@@ -34,13 +45,29 @@ const Body = ({
         placeholder="검색할 이름을 입력해주세요"
         className="input input-bordered input-info w-full max-w-xs absolute"
         style={{
-          right: "10px",
+          right: "70px",
           top: "10px",
         }}
-        onClick={() => {
-          // 검색기능
-        }}
+        value={value}
+        onChange={onSearchChange}
       />
+      <button
+        value={value}
+        onChange={onSearchChange}
+        onClick={() => onSearch(value)}
+      >
+        <img
+          src="https://cdn-icons-png.flaticon.com/128/149/149852.png"
+          alt=""
+          style={{
+            width: "40px",
+            height: "40px",
+            position: "absolute",
+            right: "1%",
+            top: "3%",
+          }}
+        />
+      </button>
       {/* <Checkbox onClick={() => {}} /> */}
       <div
         style={{
@@ -51,7 +78,6 @@ const Body = ({
           alignItems: "center",
           backgroundColor: "#7b9acc",
           color: "white",
-          // border: "5px red solid", rgba() 수정
         }}
       >
         <span
@@ -114,6 +140,8 @@ const Body = ({
         onInsertToggle={onInsertToggle}
         setSelectedUser={setSelectedUser}
         onUpdate={onUpdate}
+        onInsert={onInsert}
+        onAddToggle={onAddToggle}
       />
     </div>
   );
