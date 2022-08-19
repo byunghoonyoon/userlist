@@ -84,150 +84,6 @@ app.patch("/users/update/:id", async (req, res) => {
   );
   res.json(updateUsers);
 });
-//이름수정
-app.patch("/users/update_name/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name } = req.body;
-
-  const [userRow] = await pool.query(
-    `
-  select * from users where id = ?`,
-    [id]
-  );
-
-  if (userRow.length === 0) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-
-  if (!name) {
-    res.status(400).json({
-      msg: "name required",
-    });
-  }
-  const [rs] = await pool.query(
-    `
-  update users set
-  name = ?
-  where id = ?
-  `,
-    [name, id]
-  );
-
-  res.json({
-    msg: `${id}번 유저의 정보가 수정되었습니다.`,
-  });
-});
-//주소수정
-app.patch("/users/update_address/:id", async (req, res) => {
-  const { id } = req.params;
-  const { address } = req.body;
-
-  const [userRow] = await pool.query(
-    `
-  select * from users where id = ?`,
-    [id]
-  );
-
-  if (userRow.length === 0) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-
-  if (!address) {
-    res.status(400).json({
-      msg: "address required",
-    });
-  }
-  const [rs] = await pool.query(
-    `
-  update users set
-  address = ?
-  where id = ?
-  `,
-    [address, id]
-  );
-
-  res.json({
-    msg: `${id}번 유저의 정보가 수정되었습니다.`,
-  });
-});
-//연락처수정
-app.patch("/users/update_phone/:id", async (req, res) => {
-  const { id } = req.params;
-  const { phone } = req.body;
-
-  const [userRow] = await pool.query(
-    `
-  select * from users where id = ?`,
-    [id]
-  );
-
-  if (userRow.length === 0) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-
-  if (!phone) {
-    res.status(400).json({
-      msg: "phone required",
-    });
-  }
-  const [rs] = await pool.query(
-    `
-  update users set
-  phone = ?
-  where id = ?
-  `,
-    [phone, id]
-  );
-
-  res.json({
-    msg: `${id}번 유저의 정보가 수정되었습니다.`,
-  });
-});
-//취미수정
-app.patch("/users/update_feature/:id", async (req, res) => {
-  const { id } = req.params;
-  const { feature } = req.body;
-
-  const [userRow] = await pool.query(
-    `
-  select * from users where id = ?`,
-    [id]
-  );
-
-  if (userRow.length === 0) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-
-  if (!feature) {
-    res.status(400).json({
-      msg: "feature required",
-    });
-  }
-  const [rs] = await pool.query(
-    `
-  update users set
-  feature = ?
-  where id = ?
-  `,
-    [feature, id]
-  );
-
-  res.json({
-    msg: `${id}번 유저의 정보가 수정되었습니다.`,
-  });
-});
 //유저 한명 삭제
 app.delete("/users/delete/:id", async (req, res) => {
   const { id } = req.params;
@@ -255,7 +111,58 @@ app.delete("/users/delete/:id", async (req, res) => {
     msg: `${id}번 유저가 삭제되었습니다.`,
   });
 });
+//유저 생성
+app.post("/users/add", async (req, res) => {
+  const { name, address, phone, feature } = req.body;
 
+  if (!name || !address || !phone || !feature) {
+    res.status(400).json({
+      msg: "contents required",
+    });
+    return;
+  }
+
+  const [rs] = await pool.query(
+    `
+    INSERT INTO users SET regDate = NOW(),
+    NAME = ?, 
+    address = ?, 
+    phone = ?, 
+    feature = ?
+    `,
+    [name, address, phone, feature]
+  );
+
+  const [updatedUsers] = await pool.query(
+    `select * from users order by id desc`
+  );
+
+  res.json(updatedUsers);
+});
+//유저 검색
+app.get("/usersSearch/:name", async (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    res.status(400).json({
+      msg: "name required",
+    });
+    return;
+  }
+
+  const [users] = await pool.query(`SELECT * FROM users where name = ?`, [
+    name,
+  ]);
+
+  if (users.length === 0) {
+    res.status(404).json({
+      msg: "not found",
+    });
+    return;
+  }
+
+  res.json(users);
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

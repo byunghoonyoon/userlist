@@ -155,9 +155,45 @@ const App = () => {
     }
   };
 
-  const onSearch = (name) => {
-    // 검색 쿼리 orderby or where name 등으로 해보고 정렬하기.
-  };
+  // 검색 쿼리 orderby or where name 등으로 해보고 정렬하기.
+  // const names = users.map((user) => user.name);
+  // const searchName = (element) => {
+  //   if (element == value) {
+  //     return element;
+  //   }
+  // };
+  // console.log(users[names.findIndex(searchName)].name);
+
+  useEffect(() => {
+    const onSearch = async (value) => {
+      try {
+        const data = await axios({
+          url: `http://localhost:3002/usersSearch/${value}`,
+          method: "GET",
+        });
+
+        setUsers(data.data);
+        setIsLoading(false);
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve();
+          }, 3000);
+        });
+      } catch (e) {
+        setError(e);
+      }
+    };
+    onSearch(value);
+  }, [value]);
+  // value 재정의할것. onSearch 인식못함....
+
+  if (error) {
+    return <>에러: {error.message}</>;
+  }
+  if (isLoading) {
+    return <>Loading...</>;
+  }
+
   return (
     <div>
       <Head />
