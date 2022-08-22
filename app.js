@@ -141,7 +141,7 @@ app.post("/users/add", async (req, res) => {
 });
 //유저 검색
 app.get("/usersSearch/:name", async (req, res) => {
-  const { name } = req.body;
+  const { name } = req.params;
 
   if (!name) {
     res.status(400).json({

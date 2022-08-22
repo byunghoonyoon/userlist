@@ -164,15 +164,43 @@ const App = () => {
   // };
   // console.log(users[names.findIndex(searchName)].name);
 
-  useEffect(() => {
-    const onSearch = async (value) => {
+  const onSearch = async (name) => {
+    if (name === null || name == "") {
+      const getData = async () => {
+        try {
+          const data = await axios({
+            url: "http://localhost:3002/users",
+            method: "GET",
+          });
+
+          setUsers(data.data);
+          setIsLoading(false);
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          });
+        } catch (e) {
+          setError(e);
+        }
+      };
+      getData();
+      if (error) {
+        return <>에러: {error.message}</>;
+      }
+      if (isLoading) {
+        return <>Loading...</>;
+      }
+    } else {
       try {
+        console.log(`http://localhost:3002/usersSearch/${name}`);
         const data = await axios({
-          url: `http://localhost:3002/usersSearch/${value}`,
+          url: `http://localhost:3002/usersSearch/${name}`,
           method: "GET",
         });
-
-        setUsers(data.data);
+        const filterData = users.filter((row) => row.name.includes(name));
+        console.log(filterData);
+        setUsers(filterData);
         setIsLoading(false);
         await new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -182,10 +210,10 @@ const App = () => {
       } catch (e) {
         setError(e);
       }
-    };
-    onSearch(value);
-  }, [value]);
-  // value 재정의할것. onSearch 인식못함....
+    }
+  };
+  // ${name}에 데이터가 있으므로 req.params; 로 받아야함.
+  // 검색이틀렸을경우 에러가 나지않고 잘 뜨게끔수정해야함.
 
   if (error) {
     return <>에러: {error.message}</>;

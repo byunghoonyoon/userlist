@@ -17,6 +17,7 @@ const Body = ({
   const [value, setValue] = useState("");
   const onSearchChange = (e) => {
     setValue(e.target.value);
+    console.log(`value:${value}`);
   };
   return (
     <div
@@ -51,11 +52,7 @@ const Body = ({
         value={value}
         onChange={onSearchChange}
       />
-      <button
-        value={value}
-        onChange={onSearchChange}
-        onClick={() => onSearch(value)}
-      >
+      <button onClick={() => onSearch(value)}>
         <img
           src="https://cdn-icons-png.flaticon.com/128/149/149852.png"
           alt=""
