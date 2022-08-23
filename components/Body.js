@@ -17,7 +17,6 @@ const Body = ({
   const [value, setValue] = useState("");
   const onSearchChange = (e) => {
     setValue(e.target.value);
-    console.log(`value:${value}`);
   };
   return (
     <div
@@ -61,7 +60,7 @@ const Body = ({
             height: "40px",
             position: "absolute",
             right: "1%",
-            top: "3%",
+            top: "1.5%",
           }}
         />
       </button>

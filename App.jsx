@@ -193,14 +193,15 @@ const App = () => {
       }
     } else {
       try {
-        console.log(`http://localhost:3002/usersSearch/${name}`);
         const data = await axios({
-          url: `http://localhost:3002/usersSearch/${name}`,
+          // url: `http://localhost:3002/usersSearch/${name}`,
+          // method: "GET",
+          url: "http://localhost:3002/users",
           method: "GET",
         });
         const filterData = users.filter((row) => row.name.includes(name));
-        console.log(filterData);
-        setUsers(filterData);
+        let merged = filterData.concat(users);
+        setUsers(merged.filter((item, pos) => merged.indexOf(item) === pos));
         setIsLoading(false);
         await new Promise((resolve, reject) => {
           setTimeout(() => {
