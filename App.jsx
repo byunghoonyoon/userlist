@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserEdit from "./components/UserEdit";
 import UserAdd from "./components/UserAdd";
+import { throttle } from "throttle-debounce";
 // import Draggable from "react-draggable";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [users, setUsers] = useState([]);
+  const [btnToggle, setBtnToggle] = useState(false);
 
   // const handleDragStart = (e, user) => {
   //   e.dataTransfer.effectAllowed = "move";
@@ -68,6 +70,7 @@ const App = () => {
     };
     getData();
   }, []);
+
   if (error) {
     return <>에러: {error.message}</>;
   }
@@ -154,6 +157,9 @@ const App = () => {
       return <>Loading...</>;
     }
   };
+  const onbtnToggle = () => {
+    setBtnToggle((prev) => !prev);
+  };
 
   // 검색 쿼리 orderby or where name 등으로 해보고 정렬하기.
   // const names = users.map((user) => user.name);
@@ -200,8 +206,12 @@ const App = () => {
           method: "GET",
         });
         const filterData = users.filter((row) => row.name.includes(name));
-        let merged = filterData.concat(users);
-        setUsers(merged.filter((item, pos) => merged.indexOf(item) === pos));
+        if (filterData) {
+          let merged = filterData.concat(users);
+
+          setUsers(merged.filter((item, pos) => merged.indexOf(item) === pos));
+        }
+
         setIsLoading(false);
         await new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -256,6 +266,7 @@ const App = () => {
           selectedUser={selectedUser}
         />
       )}
+
       <Footer />
     </div>
   );

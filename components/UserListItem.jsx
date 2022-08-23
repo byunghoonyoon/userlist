@@ -1,13 +1,17 @@
 import { MdRemoveCircleOutline, MdModeEditOutline } from "react-icons/md";
 
 const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
-  const { id, name, regDate, phone, address, feature } = user;
+  const { id, name, regDate, phone, address, feature, color } = user;
 
   return (
     <li
       className="UserListItem"
       style={{ margin: "10px" }}
       draggable={true}
+      data-AOS="fade-up"
+      data-AOS-duration="1800"
+      data-AOS-offset="0"
+
       // onDragStart={(e) => {
       //   handleDragStart(e, user);
       // }}
@@ -25,6 +29,8 @@ const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
           height: "50px",
           alignItems: "center",
         }}
+        data-AOS="fade-up"
+        data-AOS-duration="3000"
       >
         {/* <div
           className={cn("checkbox", { checked: checked })}

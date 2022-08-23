@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Head.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Head = () => {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
-    <div className="con-min-width">
+    <div
+      className="con-min-width"
+      data-AOS="fade-down"
+      data-AOS-duration="1200"
+    >
       <div className="con UserList">
         <div className="app-title">
           <a href="#" _blank="target">

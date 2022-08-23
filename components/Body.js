@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
 import { MdOutlineSearch } from "react-icons/md";
 import UserList from "./UserList";
+import Body2 from "./Body2";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Body = ({
   user,
@@ -14,131 +17,145 @@ const Body = ({
   onAddToggle,
   onSearch,
 }) => {
+  useEffect(() => {
+    AOS.init();
+  });
   const [value, setValue] = useState("");
   const onSearchChange = (e) => {
     setValue(e.target.value);
   };
   return (
-    <div
-      className="overflow-x-auto mx-auto my-4 block"
-      style={{
-        width: "1200px",
-        backgroundColor: "#FCF6F5",
-        position: "relative",
-      }}
-    >
-      {" "}
-      <button
-        className="btn btn-info absolute"
-        style={{
-          left: "10px",
-          top: "10px",
-        }}
-        onClick={() => {
-          onAddToggle();
-        }}
-      >
-        회원 추가
-      </button>
-      <input
-        type="text"
-        placeholder="검색할 이름을 입력해주세요"
-        className="input input-bordered input-info w-full max-w-xs absolute"
-        style={{
-          right: "70px",
-          top: "10px",
-        }}
-        value={value}
-        onChange={onSearchChange}
-      />
-      <button onClick={() => onSearch(value)}>
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/149/149852.png"
-          alt=""
-          style={{
-            width: "40px",
-            height: "40px",
-            position: "absolute",
-            right: "1%",
-            top: "1.5%",
-          }}
-        />
-      </button>
-      {/* <Checkbox onClick={() => {}} /> */}
+    <div>
       <div
+        className="overflow-x-auto mx-auto my-4 block"
+        data-AOS="fade-up"
+        data-AOS-duration="800"
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "20px",
-          marginTop: "70px",
-          alignItems: "center",
-          backgroundColor: "#7b9acc",
-          color: "white",
+          width: "1200px",
+          backgroundColor: "#FCF6F5",
+          position: "relative",
         }}
       >
-        <span
+        {" "}
+        <button
+          className="btn btn-info absolute"
           style={{
-            width: "100px",
-            textAlign: "center",
-            marginLeft: "-10px",
+            left: "10px",
+            top: "10px",
           }}
-        >
-          이름
-        </span>
-        <span
-          style={{
-            marginLeft: "-20px",
+          onClick={() => {
+            onAddToggle();
           }}
+          data-AOS="fade-up"
+          data-AOS-duration="1600"
         >
-          주소
-        </span>
-        <span
+          회원 추가
+        </button>
+        <input
+          type="text"
+          placeholder="검색할 이름을 입력해주세요"
+          className="input input-bordered input-info w-full max-w-xs absolute"
           style={{
-            marginLeft: "40px",
-            marginRight: "10px",
+            right: "70px",
+            top: "10px",
           }}
-        >
-          연락처
-        </span>
-        <span
+          value={value}
+          onChange={onSearchChange}
+          data-AOS="fade-up"
+          data-AOS-duration="1600"
+        />
+        <button onClick={() => onSearch(value)}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/149/149852.png"
+            alt=""
+            style={{
+              width: "40px",
+              height: "40px",
+              position: "absolute",
+              right: "1%",
+              top: "1.5%",
+            }}
+          />
+        </button>
+        {/* <Checkbox onClick={() => {}} /> */}
+        <div
           style={{
-            marginRight: "0px",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "20px",
+            marginTop: "70px",
+            alignItems: "center",
+            backgroundColor: "#7b9acc",
+            color: "white",
+          }}
+          data-AOS="fade-up"
+          data-AOS-duration="2400"
+        >
+          <span
+            style={{
+              width: "100px",
+              textAlign: "center",
+              marginLeft: "-10px",
+            }}
+          >
+            이름
+          </span>
+          <span
+            style={{
+              marginLeft: "-20px",
+            }}
+          >
+            주소
+          </span>
+          <span
+            style={{
+              marginLeft: "40px",
+              marginRight: "10px",
+            }}
+          >
+            연락처
+          </span>
+          <span
+            style={{
+              marginRight: "0px",
 
-            marginLeft: "10px",
-          }}
-        >
-          가입날짜
-        </span>
-        <span
-          style={{
-            marginLeft: "10px",
-          }}
-        >
-          취미
-        </span>
-        <span>&nbsp;</span>
-        <span
-          style={{
-            marginLeft: "-50px",
-          }}
-        >
-          수정
-        </span>
-        <span>삭제</span>
-        <span>&nbsp;</span>
-        <span>Read More</span>
-        <span />
+              marginLeft: "10px",
+            }}
+          >
+            가입날짜
+          </span>
+          <span
+            style={{
+              marginLeft: "10px",
+            }}
+          >
+            취미
+          </span>
+          <span>&nbsp;</span>
+          <span
+            style={{
+              marginLeft: "-50px",
+            }}
+          >
+            수정
+          </span>
+          <span>삭제</span>
+          <span>&nbsp;</span>
+          <span>Read More</span>
+          <span />
+        </div>
+        <UserList
+          user={user}
+          users={users}
+          onRemove={onRemove}
+          onInsertToggle={onInsertToggle}
+          setSelectedUser={setSelectedUser}
+          onUpdate={onUpdate}
+          onInsert={onInsert}
+          onAddToggle={onAddToggle}
+        />
       </div>
-      <UserList
-        user={user}
-        users={users}
-        onRemove={onRemove}
-        onInsertToggle={onInsertToggle}
-        setSelectedUser={setSelectedUser}
-        onUpdate={onUpdate}
-        onInsert={onInsert}
-        onAddToggle={onAddToggle}
-      />
+      <Body2 />
     </div>
   );
 };
