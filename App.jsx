@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserEdit from "./components/UserEdit";
 import UserAdd from "./components/UserAdd";
-import { throttle } from "throttle-debounce";
+
 // import Draggable from "react-draggable";
 
 const App = () => {

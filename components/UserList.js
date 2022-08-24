@@ -7,6 +7,8 @@ const UserList = ({
   onInsertToggle,
   setSelectedUser,
   onUpdate,
+  onInsert,
+  onAddToggle,
 }) => {
   return (
     <ul
@@ -14,7 +16,11 @@ const UserList = ({
       style={{
         margin: "0 auto",
         width: "1200px",
+        overflow: "scroll",
       }}
+      data-AOS-offset="0"
+      data-AOS="fade-up"
+      data-AOS-duration="3000"
     >
       {/* {Array.from(users).map((user, index) => ( */}
       {users.map((user, index) => (
@@ -24,6 +30,7 @@ const UserList = ({
           onRemove={onRemove}
           onInsertToggle={onInsertToggle}
           setSelectedUser={setSelectedUser}
+          onAddToggle={onAddToggle}
 
           //   handleDragStart={handleDragStart}
           //   handleDragOver={handleDragOver}

@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
+import "../styles/Body.css";
 import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
 import { MdOutlineSearch } from "react-icons/md";
 import UserList from "./UserList";
 import Body2 from "./Body2";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGhost } from "@fortawesome/free-solid-svg-icons";
+// $ npm i @fortawesome/fontawesome-svg-core
+// $ npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+// $ npm i @fortawesome/react-fontawesome 폰트어썸사용법
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBars } from "@fortawesome/free-solid-svg-icons"; ->카멜표기법
+{
+  /* <FontAwesomeIcon icon={faBars} /> 본문호출법*/
+}
 const Body = ({
   user,
   users,
@@ -26,14 +36,28 @@ const Body = ({
   };
   return (
     <div>
+      <div className="background">
+        <div className="circle-box animation h-full">
+          <FontAwesomeIcon
+            icon={faGhost}
+            style={{
+              position: "absolute",
+              fontSize: "10rem",
+              zIndex: "9999",
+              color: "blanchedalmond",
+            }}
+          />
+        </div>
+      </div>
       <div
         className="overflow-x-auto mx-auto my-4 block"
-        data-AOS="fade-up"
-        data-AOS-duration="800"
+        // data-AOS="fade-up"
+        // data-AOS-duration="800"
         style={{
           width: "1200px",
-          backgroundColor: "#FCF6F5",
           position: "relative",
+          backgroundColor: "#FBAB7E",
+          backgroundImage: "linear-gradient(60deg, #F9DCBC 0%, #F7CE68 90%)",
         }}
       >
         {" "}

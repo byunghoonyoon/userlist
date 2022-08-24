@@ -2,3 +2,59 @@ div > span {
   display: flex;
   justify-content: space-around;
 }
+.background {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.circle-box {
+  position: absolute;
+}
+
+.animation {
+  animation-name: ghost;
+  animation-duration: 15s;
+  animation-delay: 0s;
+  animation-play-state: running;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+.animation:hover {
+  animation-play-state: paused;
+}
+@keyframes ghost {
+  0% {
+    top: 1vh;
+    left: 2vw;
+    transform: rotate(36deg);
+  }
+  25% {
+    top: 2vh;
+    left: 50vw;
+    transform: rotate(178deg);
+  }
+  50% {
+    top: 95vh;
+    left: 95vw;
+    transform: rotate(126deg);
+  }
+  75% {
+    top: 8vh;
+    left: 92vw;
+    transform: rotate(93deg);
+  }
+  87% {
+    top: 95vh;
+    left: 1vw;
+    transform: rotate(67deg);
+  }
+  100% {
+    top: 2vh;
+    left: 2vw;
+    transform: rotate(36deg);
+  }
+}
