@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UserListItem from "./UserListItem";
-
+import "../styles/UserList.css";
 const UserList = ({
   users,
   onRemove,
@@ -16,7 +16,7 @@ const UserList = ({
       style={{
         margin: "0 auto",
         width: "1200px",
-        overflow: "scroll",
+        overflow: "hidden",
       }}
       data-AOS-offset="0"
       data-AOS="fade-up"

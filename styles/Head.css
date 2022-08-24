@@ -12,7 +12,9 @@ li {
 
 .con-min-width {
   min-width: 1200px;
-  background: #7b9acc;
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+
   height: 60px;
 }
 .con {

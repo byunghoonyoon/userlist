@@ -1,5 +1,5 @@
 import { MdRemoveCircleOutline, MdModeEditOutline } from "react-icons/md";
-
+import "../styles/UserListItem.css";
 const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
   const { id, name, regDate, phone, address, feature, color } = user;
 
@@ -28,6 +28,7 @@ const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
           border: "2px #7b9acc solid",
           height: "50px",
           alignItems: "center",
+          overflow: "hidden",
         }}
         data-AOS="fade-up"
         data-AOS-duration="3000"

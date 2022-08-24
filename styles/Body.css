@@ -1,6 +1,11 @@
-div > span {
+.listbox span {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+span:hover {
+  background-color: #80b3ff;
 }
 .background {
   height: 100%;

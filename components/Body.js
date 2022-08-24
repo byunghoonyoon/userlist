@@ -57,7 +57,7 @@ const Body = ({
           width: "1200px",
           position: "relative",
           backgroundColor: "#FBAB7E",
-          backgroundImage: "linear-gradient(60deg, #F9DCBC 0%, #F7CE68 90%)",
+          backgroundImage: "linear-gradient(62deg, #F9DCBC 0%, #F7CE68 100%)",
         }}
       >
         {" "}
@@ -103,54 +103,64 @@ const Body = ({
         </button>
         {/* <Checkbox onClick={() => {}} /> */}
         <div
+          className="listbox"
           style={{
             display: "flex",
             justifyContent: "space-between",
-            padding: "20px",
             marginTop: "70px",
             alignItems: "center",
-            backgroundColor: "#7b9acc",
+            backgroundColor: "#8EC5FC",
+            backgroundImage: "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)",
             color: "white",
           }}
           data-AOS="fade-up"
           data-AOS-duration="2400"
         >
+          <button onClick={() => {}} style={{ height: "65px" }}>
+            <span
+              style={{
+                width: "120px",
+                textAlign: "center",
+              }}
+            >
+              이름
+            </span>
+          </button>
           <span
             style={{
+              marginLeft: "-50px",
+              height: "65px",
               width: "100px",
-              textAlign: "center",
-              marginLeft: "-10px",
-            }}
-          >
-            이름
-          </span>
-          <span
-            style={{
-              marginLeft: "-20px",
             }}
           >
             주소
           </span>
           <span
             style={{
-              marginLeft: "40px",
-              marginRight: "10px",
+              marginLeft: "-0px",
+              height: "65px",
+              width: "100px",
             }}
           >
             연락처
           </span>
+          <button onClick={() => {}}>
+            <span
+              style={{
+                marginRight: "0px",
+                marginLeft: "-10px",
+                height: "65px",
+                width: "100px",
+              }}
+            >
+              가입날짜
+            </span>
+          </button>
           <span
             style={{
-              marginRight: "0px",
-
-              marginLeft: "10px",
-            }}
-          >
-            가입날짜
-          </span>
-          <span
-            style={{
-              marginLeft: "10px",
+              marginLeft: "-40px",
+              height: "65px",
+              width: "100px",
             }}
           >
             취미
@@ -158,14 +168,31 @@ const Body = ({
           <span>&nbsp;</span>
           <span
             style={{
-              marginLeft: "-50px",
+              marginLeft: "-90px",
+              height: "65px",
+              width: "100px",
             }}
           >
             수정
           </span>
-          <span>삭제</span>
+          <span
+            style={{
+              marginLeft: "-50px",
+              height: "65px",
+              width: "100px",
+            }}
+          >
+            삭제
+          </span>
           <span>&nbsp;</span>
-          <span>Read More</span>
+          <span
+            style={{
+              height: "65px",
+              width: "100px",
+            }}
+          >
+            Read More
+          </span>
           <span />
         </div>
         <UserList
