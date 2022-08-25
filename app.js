@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = 3001;
+const port = 3002;
 const pool = mysql.createPool({
   host: "localhost",
   user: "sbsst",
@@ -17,12 +17,34 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
 });
-
-app.get("/todos", async (req, res) => {
-  const [rows] = await pool.query(`SELECT * FROM todo order by id desc`);
-  res.json(rows);
+//전체조회
+app.get("/users", async (req, res) => {
+  const [users] = await pool.query(`SELECT * FROM users order by id desc`);
+  res.json(users);
 });
 
+//이름순조회
+app.get("/usersName", async (req, res) => {
+  const [users] = await pool.query(`SELECT * FROM users order by name desc`);
+  res.json(users);
+});
+//이름역순조회
+app.get("/usersNameReverse", async (req, res) => {
+  const [users] = await pool.query(`SELECT * FROM users order by name asc`);
+  res.json(users);
+});
+//가입날짜순 조회
+app.get("/usersRegdate", async (req, res) => {
+  const [users] = await pool.query(`SELECT * FROM users order by regDate desc`);
+  res.json(users);
+});
+//가입날짜역순 조회
+app.get("/usersRegdateReverse", async (req, res) => {
+  const [users] = await pool.query(`SELECT * FROM users order by regDate asc`);
+  res.json(users);
+});
+
+//유저로그인
 app.post("/login", async (req, res) => {
   const { user_id, password } = req.body;
 
@@ -51,275 +73,149 @@ app.post("/login", async (req, res) => {
   } else {
     res.status(200).json({ authenticated: true, msg: "로그인 되었습니다." });
   }
-  console.log("user", user);
 });
 
-app.get("/todos/:id", async (req, res) => {
+//단건조회
+app.get("/users/:id", async (req, res) => {
   const { id } = req.params;
-  const [rows] = await pool.query(
+  const [userRow] = await pool.query(
     `
-  SELECT * FROM todo WHERE id = ?`,
+    SELECT * FROM users where id = ?
+    `,
     [id]
   );
 
-  if (rows.length === 0) {
+  if (userRow.length === 0) {
     res.status(404).json({
       msg: "not found",
     });
     return;
   }
 
-  res.json(rows[0]);
+  res.json([userRow]);
 });
-
-app.patch("/todos/:id", async (req, res) => {
+//전체수정
+app.patch("/users/update/:id", async (req, res) => {
   const { id } = req.params;
-  const { performDate, text } = req.body;
+  const { name, address, phone, feature } = req.body;
 
-  const [rows] = await pool.query(
+  const [userRow] = await pool.query(
     `
-  SELECT * FROM todo where id = ?`,
+  select * from users where id = ?`,
     [id]
   );
 
-  if (rows.length === 0) {
+  if (userRow.length === 0) {
     res.status(404).json({
       msg: "not found",
     });
     return;
   }
 
-  if (!performDate) {
+  if (!name || !address || !phone || !feature) {
     res.status(400).json({
-      msg: "performDate Required",
+      msg: "name, address, phone, feature required",
     });
-    return;
   }
-
-  if (!text) {
-    res.status(400).json({
-      msg: "text Required",
-    });
-    return;
-  }
-
   const [rs] = await pool.query(
     `
-  UPDATE todo SET
-  performDate = ?,
-  text = ?
+  update users set
+  name = ?,
+  address = ?,
+  phone = ?,
+  regDate = now(),
+  feature = ?
   where id = ?
   `,
-    [performDate, text, id]
+    [name, address, phone, feature, id]
+  );
+
+  const [updateUsers] = await pool.query(
+    `
+    select * from users order by id desc
+    `
+  );
+  res.json(updateUsers);
+});
+//유저 한명 삭제
+app.delete("/users/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const [user] = await pool.query(
+    `
+  select * from users where id = ?`,
+    [id]
+  );
+
+  if (user === 0) {
+    res.status(404).json({
+      msg: "not found",
+    });
+    return;
+  }
+
+  const [rs] = await pool.query(
+    `
+  delete from users where id = ?`,
+    [id]
   );
 
   res.json({
-    msg: `${id}번 할 일이 수정되었습니다.`,
+    msg: `${id}번 유저가 삭제되었습니다.`,
   });
 });
+//유저 생성
+app.post("/users/add", async (req, res) => {
+  const { name, address, phone, feature } = req.body;
 
-app.patch("/todos/checked/:id", async (req, res) => {
-  const { id } = req.params;
-  const [[todoRow]] = await pool.query(
-    `
-  SELECT * From todo where id = ? `,
-    [id]
-  );
-
-  if (!todoRow) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-
-  await pool.query(
-    `
-  update todo set checked=? where id = ?`,
-    [!todoRow.checked, id]
-  );
-
-  const [updatedTodos] = await pool.query(`
-  SELECT * from todo order by id desc`);
-
-  res.json(updatedTodos);
-});
-
-app.put("/todos/update/:id", async (req, res) => {
-  const { id } = req.params;
-  const { text } = req.body;
-
-  const [[todoRow]] = await pool.query(
-    `
-  SELECT * FROM todo WHERE id = ?
-  `,
-    [id]
-  );
-
-  if (!todoRow) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-  if (!text) {
+  if (!name || !address || !phone || !feature) {
     res.status(400).json({
-      msg: "text required",
+      msg: "contents required",
     });
     return;
   }
 
-  await pool.query(
+  const [rs] = await pool.query(
     `
-    update todo set 
-    text = ?
-    where id = ?
+    INSERT INTO users SET regDate = NOW(),
+    NAME = ?, 
+    address = ?, 
+    phone = ?, 
+    feature = ?
     `,
-    [text, id]
+    [name, address, phone, feature]
   );
 
-  const [updatedTodos] = await pool.query(`
-  SELECT * from todo order by id desc`);
+  const [updatedUsers] = await pool.query(
+    `select * from users order by id desc`
+  );
 
-  res.json(updatedTodos);
+  res.json(updatedUsers);
 });
+//유저 검색
+app.get("/usersSearch/:name", async (req, res) => {
+  const { name } = req.params;
 
-app.patch("/todos/swap/:id", async (req, res) => {
-  const { id } = req.params;
-  const { targetId } = req.body;
-  if (!id) {
+  if (!name) {
     res.status(400).json({
-      msg: "id required",
-    });
-    return;
-  }
-  if (!targetId) {
-    res.status(400).json({
-      msg: "id targetId",
+      msg: "name required",
     });
     return;
   }
 
-  await pool.query(
-    `
-  UPDATE todo a
-  INNER JOIN todo b ON a.id != b.id
-   SET a.regDate = b.regDate,
-       a.performDate = b.performDate,
-       a.checked = b.checked,
-       a.text = b.text
-  WHERE a.id IN (? , ?) AND b.id IN (? , ?)
-  `,
-    [targetId, id, id, targetId]
-  );
-  const [updatedTodos] = await pool.query(
-    `
-    SELECT *
-    FROM todo
-    ORDER BY id DESC
-    `
-  );
-  res.json(updatedTodos);
-});
+  const [users] = await pool.query(`SELECT * FROM users where name = ?`, [
+    name,
+  ]);
 
-app.delete("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  const { performDate, text } = req.body;
-
-  const [[todoRow]] = await pool.query(
-    `
-  SELECT * FROM todo where id = ?`,
-    [id]
-  );
-
-  if (todoRow === undefined) {
+  if (users.length === 0) {
     res.status(404).json({
       msg: "not found",
     });
     return;
   }
 
-  const [rs] = await pool.query(
-    `
-  DELETE from todo where id = ?`,
-    [id]
-  );
-
-  res.json({
-    msg: `${id}번 할 일이 삭제되었습니다.`,
-  });
+  res.json(users);
 });
-
-app.delete("/todos/delete/:id", async (req, res) => {
-  const { id } = req.params;
-
-  const [[todoRow]] = await pool.query(
-    `
-  SELECT * from todo Where id = ?
-  `,
-    [id]
-  );
-
-  if (todoRow === undefined) {
-    res.status(404).json({
-      msg: "not found",
-    });
-    return;
-  }
-  const [rs] = await pool.query(
-    `
-  DELETE from todo where id = ?`,
-    [id]
-  );
-
-  res.json({
-    msg: `${id}번 할 일이 삭제되었습니다.`,
-  });
-});
-
-app.post("/todos", async (req, res) => {
-  const { performDate, text } = req.body;
-
-  const [rs] = await pool.query(
-    `
-  insert into todo set performDate = ?,
-  text = ?,
-  regDate = ?,
-  checked = 0`,
-    [performDate, text, now()]
-  );
-
-  res.json({
-    msg: `할 일이 생성되었습니다.`,
-  });
-});
-
-app.post("/todos/add", async (req, res) => {
-  const { text } = req.body;
-
-  if (!text) {
-    res.status(400).json({
-      msg: "text required",
-    });
-    return;
-  }
-
-  const [addTodo] = await pool.query(
-    `
-    INSERT INTO todo SET 
-    regDate = now(), 
-    performDate = ?,
-    checked = 0,
-    TEXT = ?
-    `,
-    [null, text]
-  );
-  const [updatedTodos] = await pool.query(`
-  SELECT * from todo order by id desc`);
-
-  res.json(updatedTodos);
-});
-// postman petch(수정) 가능
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

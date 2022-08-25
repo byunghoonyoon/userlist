@@ -5,7 +5,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserEdit from "./components/UserEdit";
 import UserAdd from "./components/UserAdd";
-
+import Home from "./routes/Home";
+import About from "./routes/About";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Draggable from "react-draggable";
 
 const App = () => {
@@ -17,6 +19,8 @@ const App = () => {
   const [error, setError] = useState(null);
   const [users, setUsers] = useState([]);
   const [btnToggle, setBtnToggle] = useState(false);
+  const [nameToggle, setNameToggle] = useState(false);
+  const [regDateToggle, setRegDateToggle] = useState(false);
 
   // const handleDragStart = (e, user) => {
   //   e.dataTransfer.effectAllowed = "move";
@@ -224,7 +228,6 @@ const App = () => {
     }
   };
   // ${name}에 데이터가 있으므로 req.params; 로 받아야함.
-  // 검색이틀렸을경우 에러가 나지않고 잘 뜨게끔수정해야함.
 
   if (error) {
     return <>에러: {error.message}</>;
@@ -233,9 +236,133 @@ const App = () => {
     return <>Loading...</>;
   }
 
+  const onNameSort = async () => {
+    if (nameToggle) {
+      const getData = async () => {
+        try {
+          const data = await axios({
+            url: "http://localhost:3002/usersName",
+            method: "GET",
+          });
+
+          setUsers(data.data);
+          setIsLoading(false);
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          });
+        } catch (e) {
+          setError(e);
+        }
+      };
+      getData();
+      setNameToggle(!nameToggle);
+      if (error) {
+        return <>에러: {error.message}</>;
+      }
+      if (isLoading) {
+        return <>Loading...</>;
+      }
+    } else {
+      const getData = async () => {
+        try {
+          const data = await axios({
+            url: "http://localhost:3002/usersNameReverse",
+            method: "GET",
+          });
+
+          setUsers(data.data);
+          setIsLoading(false);
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          });
+        } catch (e) {
+          setError(e);
+        }
+      };
+      getData();
+      setNameToggle(!nameToggle);
+      if (error) {
+        return <>에러: {error.message}</>;
+      }
+      if (isLoading) {
+        return <>Loading...</>;
+      }
+    }
+  };
+
+  const onRegdateSort = async () => {
+    if (regDateToggle) {
+      const getData = async () => {
+        try {
+          const data = await axios({
+            url: "http://localhost:3002/usersRegdate",
+            method: "GET",
+          });
+
+          setUsers(data.data);
+          setIsLoading(false);
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          });
+        } catch (e) {
+          setError(e);
+        }
+      };
+      getData();
+      setRegDateToggle(!regDateToggle);
+      if (error) {
+        return <>에러: {error.message}</>;
+      }
+      if (isLoading) {
+        return <>Loading...</>;
+      }
+    } else {
+      const getData = async () => {
+        try {
+          const data = await axios({
+            url: "http://localhost:3002/usersRegdateReverse",
+            method: "GET",
+          });
+
+          setUsers(data.data);
+          setIsLoading(false);
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000);
+          });
+        } catch (e) {
+          setError(e);
+        }
+      };
+      getData();
+      setRegDateToggle(!regDateToggle);
+      if (error) {
+        return <>에러: {error.message}</>;
+      }
+      if (isLoading) {
+        return <>Loading...</>;
+      }
+    }
+  };
   return (
     <div>
       <Head />
+      <Router>
+        {/* A <Switch> looks through its children <Route>s and
+      renders the first one that matches the current URL. */}
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
       <Body
         user={user}
         users={users}
@@ -246,6 +373,8 @@ const App = () => {
         setSelectedUser={setSelectedUser}
         onUpdate={onUpdate}
         onSearch={onSearch}
+        onNameSort={onNameSort}
+        onRegdateSort={onRegdateSort}
       />
       {insertToggle && (
         <UserEdit

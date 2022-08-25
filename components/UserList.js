@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UserListItem from "./UserListItem";
-
+import "../styles/UserList.css";
 const UserList = ({
   users,
   onRemove,
@@ -9,6 +9,7 @@ const UserList = ({
   onUpdate,
   onInsert,
   onAddToggle,
+  onNameSort,
 }) => {
   return (
     <ul
@@ -16,11 +17,11 @@ const UserList = ({
       style={{
         margin: "0 auto",
         width: "1200px",
-        overflow: "scroll",
+        overflow: "hidden",
       }}
-      data-AOS-offset="0"
-      data-AOS="fade-up"
-      data-AOS-duration="3000"
+      data-aos-offset="0"
+      data-aos="flip-up"
+      data-aos-duration="1000"
     >
       {/* {Array.from(users).map((user, index) => ( */}
       {users.map((user, index) => (
@@ -31,6 +32,7 @@ const UserList = ({
           onInsertToggle={onInsertToggle}
           setSelectedUser={setSelectedUser}
           onAddToggle={onAddToggle}
+          onNameSort={onNameSort}
 
           //   handleDragStart={handleDragStart}
           //   handleDragOver={handleDragOver}

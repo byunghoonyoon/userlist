@@ -8,6 +8,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGhost } from "@fortawesome/free-solid-svg-icons";
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
+import { faArrowUpAZ } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
+import { faSpellCheck } from "@fortawesome/free-solid-svg-icons";
 // $ npm i @fortawesome/fontawesome-svg-core
 // $ npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
 // $ npm i @fortawesome/react-fontawesome 폰트어썸사용법
@@ -16,6 +21,7 @@ import { faGhost } from "@fortawesome/free-solid-svg-icons";
 {
   /* <FontAwesomeIcon icon={faBars} /> 본문호출법*/
 }
+
 const Body = ({
   user,
   users,
@@ -26,6 +32,8 @@ const Body = ({
   setSelectedUser,
   onAddToggle,
   onSearch,
+  onNameSort,
+  onRegdateSort,
 }) => {
   useEffect(() => {
     AOS.init();
@@ -34,6 +42,7 @@ const Body = ({
   const onSearchChange = (e) => {
     setValue(e.target.value);
   };
+
   return (
     <div>
       <div className="background">
@@ -70,8 +79,8 @@ const Body = ({
           onClick={() => {
             onAddToggle();
           }}
-          data-AOS="fade-up"
-          data-AOS-duration="1600"
+          data-aos="fade-up"
+          data-aos-duration="2400"
         >
           회원 추가
         </button>
@@ -85,8 +94,8 @@ const Body = ({
           }}
           value={value}
           onChange={onSearchChange}
-          data-AOS="fade-up"
-          data-AOS-duration="1600"
+          data-aos="fade-up"
+          data-aos-duration="1600"
         />
         <button onClick={() => onSearch(value)}>
           <img
@@ -113,10 +122,15 @@ const Body = ({
             backgroundImage: "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)",
             color: "white",
           }}
-          data-AOS="fade-up"
-          data-AOS-duration="2400"
+          data-aos="fade-up"
+          data-aos-duration="2400"
         >
-          <button onClick={() => {}} style={{ height: "65px" }}>
+          <button
+            onClick={() => {
+              onNameSort();
+            }}
+            style={{ height: "65px" }}
+          >
             <span
               style={{
                 width: "120px",
@@ -124,11 +138,18 @@ const Body = ({
               }}
             >
               이름
+              <FontAwesomeIcon
+                icon={faArrowUpAZ}
+                style={{
+                  marginLeft: "-40px",
+                  fontSize: "1.5rem",
+                }}
+              />
             </span>
           </button>
           <span
             style={{
-              marginLeft: "-50px",
+              marginLeft: "-40px",
               height: "65px",
               width: "100px",
             }}
@@ -137,30 +158,41 @@ const Body = ({
           </span>
           <span
             style={{
-              marginLeft: "-0px",
+              marginLeft: "10px",
+
               height: "65px",
               width: "100px",
             }}
           >
             연락처
           </span>
-          <button onClick={() => {}}>
+          <button
+            onClick={() => {
+              onRegdateSort();
+            }}
+          >
             <span
               style={{
                 marginRight: "0px",
-                marginLeft: "-10px",
+                marginLeft: "0px",
                 height: "65px",
                 width: "100px",
               }}
             >
               가입날짜
+              <FontAwesomeIcon
+                icon={faArrowDown19}
+                style={{
+                  fontSize: "1.7rem",
+                }}
+              />
             </span>
           </button>
           <span
             style={{
-              marginLeft: "-40px",
               height: "65px",
               width: "100px",
+              marginLeft: "-20px",
             }}
           >
             취미
@@ -204,6 +236,7 @@ const Body = ({
           onUpdate={onUpdate}
           onInsert={onInsert}
           onAddToggle={onAddToggle}
+          onNameSort={onNameSort}
         />
       </div>
       <Body2 />

@@ -10,8 +10,8 @@ const Head = () => {
   return (
     <div
       className="con-min-width"
-      data-AOS="fade-down"
-      data-AOS-duration="1200"
+      data-aos="fade-down"
+      data-aos-duration="1200"
     >
       <div className="con UserList">
         <div className="app-title">
@@ -23,19 +23,23 @@ const Head = () => {
           <ul>
             <li>
               <a href="#" _blank="target">
-                <span></span>
                 <span>HOME</span>
               </a>
               <a href="#" _blank="target">
-                <span></span>
                 <span>MADE</span>
               </a>
-              <a href="#" _blank="target">
-                <span></span>
+              <a
+                href="#"
+                _blank="target"
+                style={{
+                  width: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
                 <span>BY</span>
               </a>
               <a href="#" _blank="target">
-                <span></span>
                 <span>BYUNG HOON</span>
               </a>
             </li>

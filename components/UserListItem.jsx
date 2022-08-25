@@ -1,6 +1,12 @@
 import { MdRemoveCircleOutline, MdModeEditOutline } from "react-icons/md";
 import "../styles/UserListItem.css";
-const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
+const UserListItem = ({
+  user,
+  onInsertToggle,
+  setSelectedUser,
+  onRemove,
+  onNameSort,
+}) => {
   const { id, name, regDate, phone, address, feature, color } = user;
 
   return (
@@ -8,9 +14,10 @@ const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
       className="UserListItem"
       style={{ margin: "10px" }}
       draggable={true}
-      data-AOS="fade-up"
-      data-AOS-duration="1800"
-      data-AOS-offset="0"
+
+      // data-aos="fade-up"
+      // data-aos-duration="1800"
+      // data-aos-offset="0"
 
       // onDragStart={(e) => {
       //   handleDragStart(e, user);
@@ -30,8 +37,8 @@ const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
           alignItems: "center",
           overflow: "hidden",
         }}
-        data-AOS="fade-up"
-        data-AOS-duration="3000"
+        // data-aos="fade-up"
+        // data-aos-duration="3000"
       >
         {/* <div
           className={cn("checkbox", { checked: checked })}
@@ -72,7 +79,7 @@ const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
             marginRight: "40px",
             textAlign: "center",
 
-            width: "120px",
+            width: "133px",
           }}
         >
           {phone}
@@ -82,7 +89,7 @@ const UserListItem = ({ user, onInsertToggle, setSelectedUser, onRemove }) => {
           style={{
             marginRight: "40px",
             textAlign: "center",
-            width: "84px",
+            width: "96px",
             overflow: "hidden",
             whiteSpace: "nowrap",
           }}

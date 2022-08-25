@@ -1,0 +1,66 @@
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-width: 1100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.idBox {
+  left: 50%;
+  top: 75%;
+  width: 120px;
+  height: 57px;
+}
+.pwBox {
+  left: 80%;
+  top: 67%;
+  width: 120px;
+  height: 57px;
+}
+#loginBtn {
+  margin-top: -15px;
+}
+@media (max-width: 1000px) {
+  .idBox {
+    left: 40%;
+    top: 75%;
+    width: 120px;
+    height: 57px;
+  }
+  .pwBox {
+    left: 70%;
+    top: 70%;
+    width: 120px;
+    height: 57px;
+  }
+  #loginBtn {
+    right: 1%;
+    margin-top: -15px;
+  }
+}
+.navbar-end {
+  margin-left: 200px;
+}
+.navbar-end > div > .user {
+}
+.navbar-end > div > button > .logout {
+  margin-left: 300px;
+}
+@media (max-width: 1000px) {
+  .navbar-end {
+    justify-content: center;
+    left: -20%;
+  }
+  .navbar-end > div > .user {
+  }
+  .navbar-end > div > button > .logout {
+    margin-left: 200px;
+  }
+}
+
+#loginBtn:hover {
+  background-color: antiquewhite;
+  color: rgba(39, 37, 37, 0.863);
+  border: 1px antiquewhite solid;
+}
