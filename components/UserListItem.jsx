@@ -89,7 +89,7 @@ const UserListItem = ({
           style={{
             marginRight: "40px",
             textAlign: "center",
-            width: "96px",
+            width: "97.5px",
             overflow: "hidden",
             whiteSpace: "nowrap",
           }}

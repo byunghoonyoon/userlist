@@ -1,15 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import "../styles/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faSpellCheck } from "@fortawesome/free-solid-svg-icons";
-
+import { authenticatedState } from "../recoil/auth";
 const Header = () => {
-  const [logined, setLogined] = useState(false);
+  const [logined, setLogined] = useRecoilState(authenticatedState);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const [wrongToggle, setWrongToggle] = useState(false);
 
   return (
     <div className="navbar bg-base-100 flex">
@@ -51,6 +53,7 @@ const Header = () => {
                       setLogined(false);
                       setUserId("");
                       setPassword("");
+                      setWrongToggle(!wrongToggle);
                     }
                   }}
                 />
@@ -59,6 +62,38 @@ const Header = () => {
           </div>
         ) : (
           <div className="flex ">
+            <div>
+              {logined || !wrongToggle ? (
+                ""
+              ) : (
+                <FontAwesomeIcon
+                  icon={faSpellCheck}
+                  style={{
+                    fontSize: "2rem",
+                    position: "absolute",
+                    left: "20%",
+                  }}
+                />
+              )}
+            </div>
+            <div>
+              {logined || !wrongToggle ? (
+                ""
+              ) : (
+                <span
+                  style={{
+                    fontSize: "1.5rem",
+                    position: "absolute",
+                    left: "-5%",
+                    width: "116px",
+                    marginTop: "-22px",
+                    textAlign: "center",
+                  }}
+                >
+                  입력정보를 확인해주세요
+                </span>
+              )}
+            </div>
             <div className="form-control idBox absolute">
               <label className="input-group input-group-vertical">
                 <span data-aos="fade-up" data-aos-duration="1600">
@@ -102,19 +137,29 @@ const Header = () => {
               data-aos="fade-up"
               data-aos-duration="2400"
               onClick={async () => {
-                const data = await axios({
-                  url: "http://localhost:3002/login",
-                  method: "POST",
-                  data: { user_id: userId, password },
-                });
-                setLogined(true);
+                try {
+                  const data = await axios({
+                    url: "http://localhost:3002/login",
+                    method: "POST",
+                    data: { user_id: userId, password },
+                  });
+                  setLogined(data.data.authenticated);
+                } catch (e) {
+                  // alert(e.response.data.msg);
+
+                  setPassword("");
+                  setUserId("");
+                }
+                if (!wrongToggle) {
+                  setWrongToggle(!wrongToggle);
+                }
               }}
             >
               Login
             </div>
           </div>
         )}
-        {/* <div><FontAwesomeIcon icon={faSpellCheck} /></div> */}
+        {/* <div></div> */}
       </div>
     </div>
   );

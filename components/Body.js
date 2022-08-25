@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Body.css";
 import { Table, Checkbox, Mask, Badge, Button } from "react-daisyui";
-import { MdOutlineSearch } from "react-icons/md";
+import { MdOutlineInsertChart, MdOutlineSearch } from "react-icons/md";
 import UserList from "./UserList";
 import Body2 from "./Body2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGhost } from "@fortawesome/free-solid-svg-icons";
-import AwesomeSlider from "react-awesome-slider";
-import "react-awesome-slider/dist/styles.css";
 import { faArrowUpAZ } from "@fortawesome/free-solid-svg-icons";
 import { faArrowDown19 } from "@fortawesome/free-solid-svg-icons";
 import { faSpellCheck } from "@fortawesome/free-solid-svg-icons";
+import { faHouseChimneyUser } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePhone } from "@fortawesome/free-solid-svg-icons";
+import { faPersonSnowboarding } from "@fortawesome/free-solid-svg-icons";
+import { faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 // $ npm i @fortawesome/fontawesome-svg-core
 // $ npm i @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
 // $ npm i @fortawesome/react-fontawesome 폰트어썸사용법
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBars } from "@fortawesome/free-solid-svg-icons"; ->카멜표기법
 {
-  /* <FontAwesomeIcon icon={faBars} /> 본문호출법*/
+  /* <FontAwesomeIcon icon={faTrashCan} /> 본문호출법*/
 }
 
 const Body = ({
@@ -44,7 +48,7 @@ const Body = ({
   };
 
   return (
-    <div>
+    <div className="body">
       <div className="background">
         <div className="circle-box animation h-full">
           <FontAwesomeIcon
@@ -96,6 +100,11 @@ const Body = ({
           onChange={onSearchChange}
           data-aos="fade-up"
           data-aos-duration="1600"
+          onKeyPress={(e) => {
+            if (e.key == "Enter") {
+              onSearch(value);
+            }
+          }}
         />
         <button onClick={() => onSearch(value)}>
           <img
@@ -155,16 +164,30 @@ const Body = ({
             }}
           >
             주소
+            <FontAwesomeIcon
+              icon={faHouseChimneyUser}
+              style={{
+                marginLeft: "-30px",
+                fontSize: "1.3rem",
+              }}
+            />
           </span>
           <span
             style={{
               marginLeft: "10px",
-
+              fontSize: "1.3rem",
               height: "65px",
               width: "100px",
             }}
           >
             연락처
+            <FontAwesomeIcon
+              icon={faSquarePhone}
+              style={{
+                marginLeft: "-20px",
+                fontSize: "1.3rem",
+              }}
+            />
           </span>
           <button
             onClick={() => {
@@ -193,9 +216,17 @@ const Body = ({
               height: "65px",
               width: "100px",
               marginLeft: "-20px",
+              fontSize: "1.3rem",
             }}
           >
             취미
+            <FontAwesomeIcon
+              icon={faPersonSnowboarding}
+              style={{
+                marginLeft: "-20px",
+                fontSize: "2rem",
+              }}
+            />
           </span>
           <span>&nbsp;</span>
           <span
@@ -206,6 +237,13 @@ const Body = ({
             }}
           >
             수정
+            <FontAwesomeIcon
+              icon={faUserPen}
+              style={{
+                marginLeft: "-20px",
+                fontSize: "1.3rem",
+              }}
+            />
           </span>
           <span
             style={{
@@ -215,6 +253,13 @@ const Body = ({
             }}
           >
             삭제
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              style={{
+                marginLeft: "-20px",
+                fontSize: "1.3rem",
+              }}
+            />
           </span>
           <span>&nbsp;</span>
           <span
