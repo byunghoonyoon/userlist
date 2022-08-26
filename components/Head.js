@@ -8,12 +8,14 @@ const Head = () => {
     AOS.init();
   });
   return (
-    <div
-      className="con-min-width"
-      data-aos="fade-down"
-      data-aos-duration="1200"
-    >
+    <div className="con-min-width sticky">
       <div className="con UserList">
+        <a href="#" _blank="target" className="SBS">
+          <img
+            src="https://daejeon.sbsart.com/2022/img/common/logo_wh.svg"
+            alt=""
+          />
+        </a>
         <div className="app-title">
           <a href="#" _blank="target">
             User List

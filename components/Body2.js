@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "../styles/Body2.css";
+import { FaHeartbeat } from "react-icons/fa";
 const Body2 = () => {
   useEffect(() => {
     AOS.init();
@@ -69,8 +70,63 @@ const Body2 = () => {
           </span>
         </a>
       </div>
-      <div className="sliderBox mar">
-        <div className="carousel w-full">
+      {/* <div className="slidebox" stlye={{ border: "10px red solid" }}>
+        <input type="radio" name="slide" id="slide01" checked />
+        <input type="radio" name="slide" id="slide02" />
+        <input type="radio" name="slide" id="slide03" />
+        <input type="radio" name="slide" id="slide04" />
+        <ul className="slidelist">
+          <li class="sliteitem">
+            <div>
+              <label htmlFor="slide04" className="left"></label>
+              <label htmlFor="slide02" className="right"></label>
+              <a href="">
+                <img
+                  src="https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </a>
+            </div>
+          </li>
+          <li class="sliteitem">
+            <div>
+              <label htmlFor="slide01" className="left"></label>
+              <label htmlFor="slide03" className="right"></label>
+              <a href="">
+                <img
+                  src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300"
+                  alt=""
+                />
+              </a>
+            </div>
+          </li>
+          <li class="sliteitem">
+            <div>
+              <label htmlFor="slide02" className="left"></label>
+              <label htmlFor="slide04" className="right"></label>
+              <a href="">
+                <img
+                  src="https://images.pexels.com/photos/2558605/pexels-photo-2558605.jpeg?auto=compress&cs=tinysrgb&w=300"
+                  alt=""
+                />
+              </a>
+            </div>
+          </li>
+          <li class="sliteitem">
+            <div>
+              <label htmlFor="slide03" className="left"></label>
+              <label htmlFor="slide01" className="right"></label>
+              <a href="">
+                <img
+                  src="https://images.pexels.com/photos/870711/pexels-photo-870711.jpeg?auto=compress&cs=tinysrgb&w=300"
+                  alt=""
+                />
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div> https://blog.naver.com/co-nam/222198229342 */}
+      {/* <div className="carousel w-full">
           <div id="item1" className="carousel-item w-full">
             <img
               src="https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -109,10 +165,19 @@ const Body2 = () => {
           <a href="#item4" className="btn btn-xs">
             4
           </a>
+        </div> */}
+
+      <div className="flex justify-center" style={{ marginTop: "100px" }}>
+        <div className="heart animation">
+          <FaHeartbeat style={{ fontSize: "5rem", color: "#EA3D3D" }} />
         </div>
+      </div>
+      <div className="flex justify-center" style={{ marginTop: "70px" }}>
+        <span>오늘은 무엇을 배울까요?</span>
       </div>
     </div>
   );
 };
 
 export default Body2;
+// npm install react-icons --save

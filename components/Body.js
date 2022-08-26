@@ -50,7 +50,7 @@ const Body = ({
   return (
     <div className="body">
       <div className="background">
-        <div className="circle-box animation h-full">
+        <div className="circle-box animation animation-1 h-full">
           <FontAwesomeIcon
             icon={faGhost}
             style={{
@@ -58,6 +58,28 @@ const Body = ({
               fontSize: "10rem",
               zIndex: "9999",
               color: "blanchedalmond",
+            }}
+          />
+        </div>
+        <div className="circle-box animation animation-2 h-full">
+          <FontAwesomeIcon
+            icon={faGhost}
+            style={{
+              position: "absolute",
+              fontSize: "10rem",
+              zIndex: "9999",
+              color: "#5b5b5b",
+            }}
+          />
+        </div>
+        <div className="circle-box animation animation-3 h-full">
+          <FontAwesomeIcon
+            icon={faGhost}
+            style={{
+              position: "absolute",
+              fontSize: "10rem",
+              zIndex: "9999",
+              color: "##f3f6f4",
             }}
           />
         </div>

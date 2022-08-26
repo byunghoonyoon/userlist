@@ -5,9 +5,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserEdit from "./components/UserEdit";
 import UserAdd from "./components/UserAdd";
+import Fullpage from "./components/Fullpage";
 import Home from "./routes/Home";
 import About from "./routes/About";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import FullPage from "./components/Fullpage";
+import $ from "jquery";
 // import Draggable from "react-draggable";
 
 const App = () => {
@@ -397,8 +400,16 @@ const App = () => {
       )}
 
       <Footer />
+      {/* <FullPage /> */}
     </div>
   );
 };
-
+// npm install react-app-rewired --save-dev
+// npm install fullpage.js
+// npm i jquery
+// npm i jquery --save
+// "start": "react-scripts start",
+// "build": "react-scripts build",
+// "test": "react-scripts test",
+// "eject": "react-scripts eject"
 export default App;
