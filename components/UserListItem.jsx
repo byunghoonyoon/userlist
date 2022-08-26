@@ -8,6 +8,7 @@ const UserListItem = ({
   onNameSort,
 }) => {
   const { id, name, regDate, phone, address, feature, color } = user;
+  const parsedDate = regDate.split("T");
 
   return (
     <li
@@ -89,12 +90,12 @@ const UserListItem = ({
           style={{
             marginRight: "40px",
             textAlign: "center",
-            width: "97.5px",
+            width: "100px",
             overflow: "hidden",
             whiteSpace: "nowrap",
           }}
         >
-          {regDate}
+          {parsedDate[0]}
         </div>
         <div
           className="feature"

@@ -8,11 +8,23 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faSpellCheck } from "@fortawesome/free-solid-svg-icons";
 import { authenticatedState } from "../recoil/auth";
 const Header = () => {
+  const [username, setUsername] = useRecoilState(authenticatedState);
   const [logined, setLogined] = useRecoilState(authenticatedState);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [wrongToggle, setWrongToggle] = useState(false);
 
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await axios({
+  //       url: "http://localhost:3002/loginName",
+  //       method: "GET",
+  //       data: { user_id: userId, password },
+  //     });
+  //     console.log(data.data);
+  //     setUsername(data.data);
+  //   };
+  // }, [logined]);
   return (
     <div className="navbar bg-base-100 flex">
       <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -26,7 +38,7 @@ const Header = () => {
                   marginRight: "20px",
                 }}
               >
-                {userId}님 안녕하세요
+                {username}님 안녕하세요
               </span>
               <FontAwesomeIcon
                 className="user hover:bg-gray-800 hover:text-gray-50"
@@ -144,6 +156,8 @@ const Header = () => {
                     data: { user_id: userId, password },
                   });
                   setLogined(data.data.authenticated);
+                  setUsername(data.data.user.username);
+                  console.log(data.data.user.username);
                 } catch (e) {
                   // alert(e.response.data.msg);
 

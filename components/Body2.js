@@ -126,46 +126,46 @@ const Body2 = () => {
           </li>
         </ul>
       </div> https://blog.naver.com/co-nam/222198229342 */}
-      {/* <div className="carousel w-full">
-          <div id="item1" className="carousel-item w-full">
-            <img
-              src="https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              className="w-full"
-            />
-          </div>
-          <div id="item2" className="carousel-item w-full">
-            <img
-              src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300"
-              className="w-full"
-            />
-          </div>
-          <div id="item3" className="carousel-item w-full">
-            <img
-              src="https://images.pexels.com/photos/2558605/pexels-photo-2558605.jpeg?auto=compress&cs=tinysrgb&w=300"
-              className="w-full"
-            />
-          </div>
-          <div id="item4" className="carousel-item w-full">
-            <img
-              src="https://images.pexels.com/photos/870711/pexels-photo-870711.jpeg?auto=compress&cs=tinysrgb&w=300"
-              className="w-full"
-            />
-          </div>
+      <div className="carousel w-full sliderBox">
+        <div id="item1" className="carousel-item w-full">
+          <img
+            src="https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            className="w-full"
+          />
         </div>
-        <div className="flex justify-center w-full py-2 gap-2">
-          <a href="#item1" className="btn btn-xs">
-            1
-          </a>
-          <a href="#item2" className="btn btn-xs">
-            2
-          </a>
-          <a href="#item3" className="btn btn-xs">
-            3
-          </a>
-          <a href="#item4" className="btn btn-xs">
-            4
-          </a>
-        </div> */}
+        <div id="item2" className="carousel-item w-full">
+          <img
+            src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=300"
+            className="w-full"
+          />
+        </div>
+        <div id="item3" className="carousel-item w-full">
+          <img
+            src="https://images.pexels.com/photos/2558605/pexels-photo-2558605.jpeg?auto=compress&cs=tinysrgb&w=300"
+            className="w-full"
+          />
+        </div>
+        <div id="item4" className="carousel-item w-full">
+          <img
+            src="https://images.pexels.com/photos/870711/pexels-photo-870711.jpeg?auto=compress&cs=tinysrgb&w=300"
+            className="w-full"
+          />
+        </div>
+      </div>
+      <div className="flex justify-center w-full py-2 gap-2">
+        <a href="#item1" className="btn btn-xs">
+          1
+        </a>
+        <a href="#item2" className="btn btn-xs">
+          2
+        </a>
+        <a href="#item3" className="btn btn-xs">
+          3
+        </a>
+        <a href="#item4" className="btn btn-xs">
+          4
+        </a>
+      </div>
 
       <div className="flex justify-center" style={{ marginTop: "100px" }}>
         <div className="heart animation">
@@ -180,4 +180,3 @@ const Body2 = () => {
 };
 
 export default Body2;
-// npm install react-icons --save

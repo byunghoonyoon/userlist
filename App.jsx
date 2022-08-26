@@ -5,12 +5,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserEdit from "./components/UserEdit";
 import UserAdd from "./components/UserAdd";
-import Fullpage from "./components/Fullpage";
+
 import Home from "./routes/Home";
 import About from "./routes/About";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import FullPage from "./components/Fullpage";
-import $ from "jquery";
 // import Draggable from "react-draggable";
 
 const App = () => {
@@ -63,6 +61,7 @@ const App = () => {
           url: "http://localhost:3002/users",
           method: "GET",
         });
+        console.log(data.data);
 
         setUsers(data.data);
         setIsLoading(false);

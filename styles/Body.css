@@ -34,7 +34,7 @@ body {
 }
 
 .animation.animation-1 {
-  animation-name: ghost;
+  animation-name: ghost1;
   animation-duration: 15s;
   animation-delay: 0s;
   animation-play-state: running;
@@ -45,7 +45,7 @@ body {
 .animation:hover {
   animation-play-state: paused;
 }
-@keyframes ghost {
+@keyframes ghost1 {
   0% {
     top: 1vh;
     left: 2vw;
@@ -78,7 +78,7 @@ body {
   }
 }
 .animation.animation-2 {
-  animation-name: ghost;
+  animation-name: ghost2;
   animation-duration: 15s;
   animation-delay: 0s;
   animation-play-state: running;
@@ -89,7 +89,7 @@ body {
 .animation:hover {
   animation-play-state: paused;
 }
-@keyframes ghost {
+@keyframes ghost2 {
   0% {
     top: 97vh;
     left: 2vw;
@@ -122,7 +122,7 @@ body {
   }
 }
 .animation.animation-3 {
-  animation-name: ghost;
+  animation-name: ghost3;
   animation-duration: 15s;
   animation-delay: 0s;
   animation-play-state: running;
@@ -133,7 +133,7 @@ body {
 .animation:hover {
   animation-play-state: paused;
 }
-@keyframes ghost {
+@keyframes ghost3 {
   0% {
     top: 51vh;
     left: 92vw;

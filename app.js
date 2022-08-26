@@ -71,7 +71,11 @@ app.post("/login", async (req, res) => {
     });
     return;
   } else {
-    res.status(200).json({ authenticated: true, msg: "로그인 되었습니다." });
+    res.status(200).json({
+      authenticated: true,
+      msg: "로그인 되었습니다.",
+      user: user,
+    });
   }
 });
 
