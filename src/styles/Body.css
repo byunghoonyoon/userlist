@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "LeeSeoyun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "LeeSeoyun";
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
+
+.listbox span {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.listbox span:hover {
+  background-color: #80b3ff;
+}
+.background {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.circle-box {
+  position: absolute;
+}
+
+.animation.animation-1 {
+  animation-name: ghost;
+  animation-duration: 15s;
+  animation-delay: 0s;
+  animation-play-state: running;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+.animation:hover {
+  animation-play-state: paused;
+}
+@keyframes ghost {
+  0% {
+    top: 1vh;
+    left: 2vw;
+    transform: rotate(36deg);
+  }
+  25% {
+    top: 2vh;
+    left: 50vw;
+    transform: rotate(178deg);
+  }
+  50% {
+    top: 95vh;
+    left: 95vw;
+    transform: rotate(126deg);
+  }
+  75% {
+    top: 8vh;
+    left: 92vw;
+    transform: rotate(93deg);
+  }
+  87% {
+    top: 95vh;
+    left: 1vw;
+    transform: rotate(67deg);
+  }
+  100% {
+    top: 2vh;
+    left: 2vw;
+    transform: rotate(36deg);
+  }
+}
+.animation.animation-2 {
+  animation-name: ghost;
+  animation-duration: 15s;
+  animation-delay: 0s;
+  animation-play-state: running;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+.animation:hover {
+  animation-play-state: paused;
+}
+@keyframes ghost {
+  0% {
+    top: 97vh;
+    left: 2vw;
+    transform: rotate(18deg);
+  }
+  25% {
+    top: 53vh;
+    left: 09vw;
+    transform: rotate(178deg);
+  }
+  50% {
+    top: 2vh;
+    left: 3vw;
+    transform: rotate(66deg);
+  }
+  75% {
+    top: 67vh;
+    left: 92vw;
+    transform: rotate(167deg);
+  }
+  87% {
+    top: 9vh;
+    left: 51vw;
+    transform: rotate(79deg);
+  }
+  100% {
+    top: 92vh;
+    left: 2vw;
+    transform: rotate(30deg);
+  }
+}
+.animation.animation-3 {
+  animation-name: ghost;
+  animation-duration: 15s;
+  animation-delay: 0s;
+  animation-play-state: running;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.animation:hover {
+  animation-play-state: paused;
+}
+@keyframes ghost {
+  0% {
+    top: 51vh;
+    left: 92vw;
+    transform: rotate(56deg);
+  }
+  25% {
+    top: 2vh;
+    left: 50vw;
+    transform: rotate(178deg);
+  }
+  50% {
+    top: 85vh;
+    left: 90vw;
+    transform: rotate(141deg);
+  }
+  75% {
+    top: 78vh;
+    left: 2vw;
+    transform: rotate(53deg);
+  }
+  87% {
+    top: 2vh;
+    left: 1vw;
+    transform: rotate(45deg);
+  }
+  100% {
+    top: 52vh;
+    left: 92vw;
+    transform: rotate(45deg);
+  }
+}
